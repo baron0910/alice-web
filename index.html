@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>愛麗絲網路微創商行</title>
+<meta name="description" content="愛麗絲網路微創商行 — 食品、飲料、茶葉、日用品批發零售。統一編號 42050255，新竹市政府核准設立。">
+<style>
+  :root{
+    --brand:#c2185b;
+    --brand-dark:#880e4f;
+    --ink:#2b2b2b;
+    --muted:#6b6b6b;
+    --line:#eadfe4;
+    --bg:#fff7fa;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Helvetica Neue","PingFang TC","Microsoft JhengHei",sans-serif;
+    color:var(--ink);line-height:1.7;background:#fff;
+  }
+  a{color:var(--brand);text-decoration:none}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+
+  /* Header */
+  header{
+    position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--brand-dark)}
+  .logo .dot{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--brand),#ff80ab);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px}
+  nav.menu a{margin-left:24px;color:var(--ink);font-size:15px}
+  nav.menu a:hover{color:var(--brand)}
+  @media(max-width:640px){nav.menu{display:none}}
+
+  /* Hero */
+  .hero{
+    background:linear-gradient(160deg,var(--bg) 0%,#fff 60%);
+    padding:78px 0 64px;text-align:center;
+  }
+  .hero h1{font-size:40px;letter-spacing:1px;color:var(--brand-dark);margin-bottom:14px}
+  .hero p.lead{font-size:18px;color:var(--muted);max-width:620px;margin:0 auto 28px}
+  .badge{display:inline-block;background:#fff;border:1px solid var(--line);color:var(--brand-dark);
+    padding:6px 16px;border-radius:999px;font-size:14px;margin:4px}
+  .cta{margin-top:30px}
+  .btn{display:inline-block;background:var(--brand);color:#fff;padding:13px 30px;border-radius:8px;font-size:16px;font-weight:600}
+  .btn:hover{background:var(--brand-dark)}
+  @media(max-width:640px){.hero h1{font-size:30px}}
+
+  /* Sections */
+  section.block{padding:62px 0;border-bottom:1px solid var(--line)}
+  .stitle{text-align:center;margin-bottom:40px}
+  .stitle h2{font-size:27px;color:var(--brand-dark)}
+  .stitle .sub{color:var(--muted);margin-top:6px;font-size:15px}
+
+  /* About */
+  .about{font-size:16px;color:#444;max-width:760px;margin:0 auto;text-align:center}
+
+  /* Services grid */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px;transition:.2s}
+  .card:hover{box-shadow:0 8px 24px rgba(194,24,91,.10);transform:translateY(-3px)}
+  .card .ic{width:44px;height:44px;border-radius:10px;background:var(--bg);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+  .card .ic svg{width:24px;height:24px;stroke:var(--brand);fill:none;stroke-width:1.8}
+  .card h3{font-size:17px;margin-bottom:8px;color:var(--ink)}
+  .card p{font-size:14px;color:var(--muted)}
+
+  /* Info table */
+  .info{background:var(--bg);border-radius:14px;padding:8px 28px;max-width:720px;margin:0 auto}
+  .row{display:flex;padding:16px 0;border-bottom:1px dashed var(--line)}
+  .row:last-child{border-bottom:none}
+  .row .k{width:140px;color:var(--brand-dark);font-weight:600;flex-shrink:0}
+  .row .v{color:#444}
+  @media(max-width:560px){.row{flex-direction:column}.row .k{width:auto;margin-bottom:2px}}
+
+  /* Contact */
+  .contact{text-align:center}
+  .contact .line{font-size:16px;color:#444;margin:6px 0}
+
+  footer{padding:30px 0;text-align:center;color:var(--muted);font-size:13px;background:#fafafa}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo"><span class="dot">愛</span>愛麗絲網路微創商行</div>
+    <nav class="menu">
+      <a href="#about">關於我們</a>
+      <a href="#services">營業項目</a>
+      <a href="#info">公司資訊</a>
+      <a href="#contact">聯絡我們</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>愛麗絲網路微創商行</h1>
+    <p class="lead">食品、飲料、茶葉與日用品的批發零售供應。承攬零售業務，連結品牌與消費者，提供穩定可靠的商品流通服務。</p>
+    <div>
+      <span class="badge">統一編號 42050255</span>
+      <span class="badge">新竹市政府核准設立</span>
+      <span class="badge">成立於 2016 年</span>
+    </div>
+    <div class="cta"><a href="#contact" class="btn">聯絡我們</a></div>
+  </div>
+</section>
+
+<section class="block" id="about">
+  <div class="wrap">
+    <div class="stitle"><h2>關於我們</h2><div class="sub">About Us</div></div>
+    <p class="about">
+      愛麗絲網路微創商行為依法登記之獨資商號，自 2016 年於新竹設立以來，專注於食品、飲料、茶葉、日用品等多元商品之批發與零售。我們亦承攬其他公司之零售業務，以靈活的通路整合能力，協助品牌將商品送達消費者手中。誠信經營、穩定供貨，是我們長期的承諾。
+    </p>
+  </div>
+</section>
+
+<section class="block" id="services">
+  <div class="wrap">
+    <div class="stitle"><h2>營業項目</h2><div class="sub">Our Business</div></div>
+    <div class="grid">
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 7h18M5 7l1 13h12l1-13M9 11v5M15 11v5"/></svg></div>
+        <h3>食品雜貨批發零售</h3>
+        <p>食品雜貨、食用油脂等商品之批發與零售供應。</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M7 3h10l-1 7a4 4 0 01-8 0L7 3zM12 14v5M8 21h8"/></svg></div>
+        <h3>飲料・茶葉・酒精</h3>
+        <p>各式飲料、茶葉、蒸酒及酒精類商品批發零售。</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 9l9-6 9 6v11a1 1 0 01-1 1h-5v-7H9v7H4a1 1 0 01-1-1z"/></svg></div>
+        <h3>日用品・電器</h3>
+        <p>日常用品與電器等消費性商品之通路供應。</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 3h18v6H3zM3 13h18v8H3zM7 6h.01M7 17h.01"/></svg></div>
+        <h3>零售業務承攬</h3>
+        <p>承攬其他公司零售業務，整合通路與物流資源。</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.7l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.7l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
+        <h3>網路電商銷售</h3>
+        <p>透過網路平台進行商品上架、銷售與客戶服務。</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4 8 4 8-4zM4 7v10l8 4M20 7v10l-8 4"/></svg></div>
+        <h3>商品代理流通</h3>
+        <p>協助品牌商品代理、流通與市場拓展。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="info">
+  <div class="wrap">
+    <div class="stitle"><h2>公司資訊</h2><div class="sub">Company Information</div></div>
+    <div class="info">
+      <div class="row"><div class="k">商號名稱</div><div class="v">愛麗絲網路微創商行</div></div>
+      <div class="row"><div class="k">統一編號</div><div class="v">42050255</div></div>
+      <div class="row"><div class="k">負責人</div><div class="v">陳莀稀</div></div>
+      <div class="row"><div class="k">組織型態</div><div class="v">獨資</div></div>
+      <div class="row"><div class="k">登記機關</div><div class="v">新竹市政府</div></div>
+      <div class="row"><div class="k">登記狀態</div><div class="v">核准設立</div></div>
+      <div class="row"><div class="k">公司地址</div><div class="v">新竹市香山區牛埔里中華路四段567巷81號一樓</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block contact" id="contact">
+  <div class="wrap">
+    <div class="stitle"><h2>聯絡我們</h2><div class="sub">Contact</div></div>
+    <p class="line">📍 新竹市香山區牛埔里中華路四段567巷81號一樓</p>
+    <p class="line">🏢 愛麗絲網路微創商行</p>
+    <p class="line">歡迎透過 LINE 官方帳號與我們聯繫，洽詢商品與合作事宜。</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 愛麗絲網路微創商行 ALICE．統一編號 42050255．新竹市政府核准設立</div>
+</footer>
+
+</body>
+</html>
