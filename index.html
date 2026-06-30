@@ -120,8 +120,11 @@
   @media(max-width:720px){.pgrid{grid-template-columns:repeat(2,1fr);gap:14px}}
   .pcard{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:.25s}
   .pcard:hover{transform:translateY(-5px);box-shadow:0 16px 36px rgba(255,111,97,.13);border-color:var(--blush)}
-  .pthumb{aspect-ratio:1/1;background:var(--cream);overflow:hidden}
+  .pthumb{aspect-ratio:1/1;background:var(--cream);overflow:hidden;position:relative}
   .pthumb img{width:100%;height:100%;object-fit:cover}
+  .pcard.soldout .pthumb img{filter:grayscale(.5);opacity:.55}
+  .soldbadge{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.62);color:#fff;font-size:13px;font-weight:700;letter-spacing:2px;padding:5px 14px;border-radius:20px}
+  .pbtn-dis{background:#c9c9c9!important;cursor:not-allowed;pointer-events:none}
   .pbody{padding:16px 16px 18px;display:flex;flex-direction:column;flex:1}
   .ptag{align-self:flex-start;font-size:11px;font-weight:700;color:var(--coral);background:var(--blush);padding:3px 10px;border-radius:20px;margin-bottom:9px}
   .pname{font-size:14px;font-weight:500;color:var(--ink);line-height:1.5;margin-bottom:12px;flex:1}
@@ -436,41 +439,41 @@
 // 商品資料：[品名, 分類, 售價, 原價, 圖片URL]。日後改圖/改價/增刪商品改這裡即可。
 const LINE_URL = "https://lin.ee/PoX41Uh";
 const PRODUCTS = [
- ["雙效益生菌1盒＋幸福鱸魚 粉橘版1盒","寶貝營養嚴選",3980,6380,"https://i.postimg.cc/c1M1D2LY/S-187916319.jpg"],
- ["幸福鱸魚試飲（每人限購）","寶貝營養嚴選",180,250,"https://i.postimg.cc/RVMBFTxL/S_187949064.jpg"],
- ["幸福鱸魚 科技銀","寶貝營養嚴選",1860,2500,"https://i.postimg.cc/JnbVwCmy/%E6%88%AA%E5%9C%96_2026_03_23_%E4%B8%8B%E5%8D%883_34_51.png"],
- ["幸福鱸魚 粉橘版","寶貝營養嚴選",1860,2500,"https://i.postimg.cc/VkGmLgXZ/%E6%88%AA%E5%9C%96_2026_03_23_%E4%B8%8B%E5%8D%882_17_33.png"],
- ["雙效益生菌","寶貝營養嚴選",2422,3880,"https://i.postimg.cc/Y0bf7X8V/message_Image_1774356968680.jpg"],
- ["Double Power Super i 極視能葉黃素光漾素食膠囊（180顆／罐）","寶貝營養嚴選",12680,19800,"https://i.postimg.cc/d34mFWnz/message_Image_1774356019396.jpg"],
- ["Pures Select 南極冰鑽磷蝦油 家庭號（200粒／罐）","寶貝營養嚴選",9780,13900,"https://i.postimg.cc/T3NLrtdw/S_187916297.jpg"],
- ["Double Power Super i 極視能葉黃素光漾素食膠囊（30顆／罐）","寶貝營養嚴選",2580,3900,"https://i.postimg.cc/pLqgB11Q/message-Image-1774368569735.jpg"],
- ["Double Power 原粹藍藻錠 300顆／瓶 天然的綜合營養素","寶貝營養嚴選",2250,3300,"https://i.postimg.cc/BbMc3hNz/message_Image_1774355394520.jpg"],
- ["Double Power 專利法國藻油 510-Y DHA","寶貝營養嚴選",1680,2200,"https://i.postimg.cc/1XgfpKqq/%E6%88%AA%E5%9C%96_2026_03_23_%E4%B8%8B%E5%8D%884_23_38.png"],
- ["Meta Water 貴珀香檳風味","寶貝營養嚴選",888,1680,"https://i.postimg.cc/MHd0P5Pq/%E6%88%AA%E5%9C%96_2026_03_23_%E4%B8%8B%E5%8D%884_43_30.png"],
- ["頂規液態維生素D3 365滴（15ml／瓶）","寶貝營養嚴選",620,1350,"https://i.postimg.cc/zB3z1J8Z/S-3399711.jpg"],
- ["百卡烏龍奶綠（盒裝）","寶貝營養嚴選",1323,1600,"https://i.postimg.cc/CKsLZt9T/%E6%88%AA%E5%9C%96_2026_03_23_%E6%99%9A%E4%B8%8A11_50_22.png"],
- ["百卡泰式奶茶（盒裝）","寶貝營養嚴選",1323,1600,"https://i.postimg.cc/R0gxxz2k/%E6%88%AA%E5%9C%96_2026_03_23_%E6%99%9A%E4%B8%8A11_49_59.png"],
- ["百卡烏龍奶綠（太空科技包）","寶貝營養嚴選",3860,4800,"https://i.postimg.cc/T271qz1M/%E6%88%AA%E5%9C%96_2026_03_23_%E6%99%9A%E4%B8%8A11_56_27.png"],
- ["百卡泰式奶茶（太空科技包）","寶貝營養嚴選",3860,4800,"https://i.postimg.cc/FKrX6KCB/%E6%88%AA%E5%9C%96_2026_03_23_%E6%99%9A%E4%B8%8A11_58_25.png"],
- ["Double Power 纖歲茶系列 抹茶／奶茶","媽咪美麗保養",3450,5600,"https://i.postimg.cc/tg4ykkMh/message_Image_1774362068845.jpg"],
- ["Simply新普利 夜酵素薑黃錠PLUS+（80錠／盒）+小盒30顆","媽咪美麗保養",5480,7600,"https://i.postimg.cc/bvw8ggBx/message_Image_1774362774943.jpg"],
- ["速疾通膠囊 2瓶／組","媽咪美麗保養",7920,11960,"https://i.postimg.cc/nLdk9451/S_187908117.jpg"],
- ["白皙加橙發泡錠 3盒／組","媽咪美麗保養",2740,4140,"https://i.postimg.cc/gjB0Mth5/%E6%88%AA%E5%9C%96_2026_03_23_%E4%B8%8B%E5%8D%885_26_57.png"],
- ["愛比堤 女王錠 3個月醫美養美組","媽咪美麗保養",34500,44700,"https://i.postimg.cc/R0PRJ78L/message_Image_1774365598296.jpg"],
- ["LOVEISDERMA 愛斯德瑪 友善海洋防曬乳系列（顏色可選）","媽咪美麗保養",1080,1700,"https://i.postimg.cc/pLchDsWy/S_187916295.jpg"],
- ["愛比堤 悅白美顏魔法鍺巾","媽咪美麗保養",3160,6320,"https://i.postimg.cc/v8qYWjbH/%E6%88%AA%E5%9C%96_2026_03_23_%E4%B8%8B%E5%8D%885_57_53.png"],
- ["自然主意 奇亞籽 家庭號","媽咪美麗保養",700,1100,"https://i.postimg.cc/wjH9HdkZ/%E6%88%AA%E5%9C%96_2026_03_23_%E4%B8%8B%E5%8D%886_00_52.png"],
- ["好食光 海苔脆魚捲","親子放心零食",213,400,"https://i.postimg.cc/kG4tTb2Y/%E6%88%AA%E5%9C%96_2026_03_23_%E4%B8%8B%E5%8D%886_06_01.png"],
- ["酷覓星 香鬆起士糙米捲（添加奇亞籽、彩虹藜麥）","親子放心零食",211,300,"https://i.postimg.cc/j2rKqhdW/%E6%88%AA%E5%9C%96_2026_03_23_%E6%99%9A%E4%B8%8A11_41_08.png"],
- ["明治 頂級和牛肉乾（原味／麻辣）","親子放心零食",339,480,"https://i.postimg.cc/gJ22FsjX/%E6%88%AA%E5%9C%96_2026_03_23_%E6%99%9A%E4%B8%8A11_35_22.png"],
- ["KINYO 免手持肩頸揉捏按摩器 IAM-2706","媽咪放鬆好物",1980,2290,"https://i.postimg.cc/MKJRgcVb/%E6%88%AA%E5%9C%96_2026_03_24_%E5%87%8C%E6%99%A812_18_24.png"],
- ["KINYO 溫感煥顏導入刮痧儀 AMR-205","媽咪放鬆好物",699,1780,"https://i.postimg.cc/kML3CCgV/%E6%88%AA%E5%9C%96_2026_03_24_%E5%87%8C%E6%99%A812_21_27.png"],
- ["KINYO 舒活經絡梳刮痧儀 AMR-206","媽咪放鬆好物",795,1850,"https://i.postimg.cc/wvKLH3nK/%E6%88%AA%E5%9C%96_2026_03_24_%E5%87%8C%E6%99%A812_26_06.png"],
- ["五月花 210抽 48包／箱","居家生活必備",1080,2180,"https://i.postimg.cc/G3x771sT/%E6%88%AA%E5%9C%96_2026_03_24_%E5%87%8C%E6%99%A812_36_43.png"],
- ["病毒盾 VirusOUT 菌切錠 12錠／盒","居家生活必備",1980,3600,"https://i.postimg.cc/6ptGMDns/%E6%88%AA%E5%9C%96_2026_03_24_%E5%87%8C%E6%99%A812_41_56.png"],
- ["厚棒面紙隨身包（20袋／箱）","居家生活必備",1090,1490,"https://i.postimg.cc/SRRgYnQv/%E6%88%AA%E5%9C%96_2026_03_24_%E5%87%8C%E6%99%A812_45_21.png"],
- ["阿瑪迪斯速舒修護組 300ml 1組＋60ml 1組","居家生活必備",3672,3979,"https://i.postimg.cc/7PNCfKjR/16855272046579.jpg"],
- ["KINYO 掃震電動牙刷 ETB-895","居家生活必備",1230,2490,"https://i.postimg.cc/BQTGqzyP/%E6%88%AA%E5%9C%96_2026_03_24_%E5%87%8C%E6%99%A812_55_41.png"]
+ ["雙效益生菌1盒＋幸福鱸魚 粉橘版1盒","寶貝營養嚴選",3980,6380,"assets/products/01-probiotic-seabass-set.jpg"],
+ ["幸福鱸魚試飲（每人限購）","寶貝營養嚴選",180,250,"assets/products/02-seabass-sample.png",true],
+ ["幸福鱸魚 科技銀","寶貝營養嚴選",1860,2500,"assets/products/03-seabass-silver.jpg"],
+ ["幸福鱸魚 粉橘版","寶貝營養嚴選",1860,2500,"assets/products/04-seabass-pink.jpg"],
+ ["雙效益生菌","寶貝營養嚴選",2422,3880,"assets/products/05-double-probiotic.jpg"],
+ ["Double Power Super i 極視能葉黃素光漾素食膠囊（180顆／罐）","寶貝營養嚴選",12680,19800,"assets/products/06-super-i-180.jpg"],
+ ["Pures Select 南極冰鑽磷蝦油 家庭號（200粒／罐）","寶貝營養嚴選",9780,13900,"assets/products/07-krill-oil-family.jpg"],
+ ["Double Power Super i 極視能葉黃素光漾素食膠囊（30顆／罐）","寶貝營養嚴選",2580,3900,"assets/products/08-super-i-30.jpg"],
+ ["Double Power 原粹藍藻錠 300顆／瓶 天然的綜合營養素","寶貝營養嚴選",2250,3300,"assets/products/09-spirulina.jpg"],
+ ["Double Power 專利法國藻油 510-Y DHA","寶貝營養嚴選",1680,2200,"assets/products/10-dha-algae-oil.jpg"],
+ ["Meta Water 貴珀香檳風味","寶貝營養嚴選",888,1680,"assets/products/11-meta-water.jpg"],
+ ["頂規液態維生素D3 365滴（15ml／瓶）","寶貝營養嚴選",620,1350,"assets/products/12-vitamin-d3.jpg"],
+ ["百卡烏龍奶綠（盒裝）","寶貝營養嚴選",1323,1600,"assets/products/13-baika-oolong-box.jpg"],
+ ["百卡泰式奶茶（盒裝）","寶貝營養嚴選",1323,1600,"assets/products/14-baika-thai-box.jpg"],
+ ["百卡烏龍奶綠（太空科技包）","寶貝營養嚴選",3860,4800,"assets/products/15-baika-oolong-space.jpg"],
+ ["百卡泰式奶茶（太空科技包）","寶貝營養嚴選",3860,4800,"assets/products/16-baika-thai-space.jpg"],
+ ["Double Power 纖歲茶系列 抹茶／奶茶","媽咪美麗保養",3450,5600,"assets/products/17-fiber-tea.jpg"],
+ ["Simply新普利 夜酵素薑黃錠PLUS+（80錠／盒）+小盒30顆","媽咪美麗保養",5480,7600,"assets/products/18-night-enzyme.jpg"],
+ ["速疾通膠囊 2瓶／組","媽咪美麗保養",7920,11960,"assets/products/19-sujitong.jpg"],
+ ["白皙加橙發泡錠 3盒／組","媽咪美麗保養",2740,4140,"assets/products/20-white-orange-tablet.jpg"],
+ ["愛比堤 女王錠 3個月醫美養美組","媽咪美麗保養",34500,44700,"assets/products/21-queen-tablet.jpg"],
+ ["LOVEISDERMA 愛斯德瑪 友善海洋防曬乳系列（顏色可選）","媽咪美麗保養",1080,1700,"assets/products/22-loveisderma-sunscreen.jpg"],
+ ["愛比堤 悅白美顏魔法鍺巾","媽咪美麗保養",3160,6320,"assets/products/23-germanium-towel.jpg"],
+ ["自然主意 奇亞籽 家庭號","媽咪美麗保養",700,1100,"assets/products/24-chia-seed.jpg"],
+ ["好食光 海苔脆魚捲","親子放心零食",213,400,"assets/products/25-seaweed-fish-roll.jpg"],
+ ["酷覓星 香鬆起士糙米捲（添加奇亞籽、彩虹藜麥）","親子放心零食",211,300,"assets/products/26-brown-rice-roll.jpg"],
+ ["明治 頂級和牛肉乾（原味／麻辣）","親子放心零食",339,480,"assets/products/27-wagyu-jerky.jpg"],
+ ["KINYO 免手持肩頸揉捏按摩器 IAM-2706","媽咪放鬆好物",1980,2290,"assets/products/28-kinyo-neck-massager.jpg"],
+ ["KINYO 溫感煥顏導入刮痧儀 AMR-205","媽咪放鬆好物",699,1780,"assets/products/29-kinyo-face-gua-sha.jpg"],
+ ["KINYO 舒活經絡梳刮痧儀 AMR-206","媽咪放鬆好物",795,1850,"assets/products/30-kinyo-scalp-gua-sha.jpg"],
+ ["五月花 210抽 48包／箱","居家生活必備",1080,2180,"assets/products/31-mayflower-tissue.jpg"],
+ ["病毒盾 VirusOUT 菌切錠 12錠／盒","居家生活必備",1980,3600,"assets/products/32-virusout.jpg"],
+ ["厚棒面紙隨身包（20袋／箱）","居家生活必備",1090,1490,"assets/products/33-portable-tissue.jpg"],
+ ["阿瑪迪斯速舒修護組 300ml 1組＋60ml 1組","居家生活必備",3672,3979,"assets/products/34-amadeus-repair.jpg"],
+ ["KINYO 掃震電動牙刷 ETB-895","居家生活必備",1230,2490,"assets/products/35-kinyo-toothbrush.jpg"]
 ];
 const CATS = ["全部","寶貝營養嚴選","媽咪美麗保養","親子放心零食","媽咪放鬆好物","居家生活必備"];
 const fmt = n => "$" + n.toLocaleString();
@@ -480,13 +483,13 @@ let active = "全部";
 function render(){
   const list = active==="全部" ? PRODUCTS : PRODUCTS.filter(p=>p[1]===active);
   grid.innerHTML = list.map(p=>`
-    <div class="pcard">
-      <div class="pthumb"><img src="${p[4]}" alt="${p[0]}" loading="lazy"></div>
+    <div class="pcard${p[5]?" soldout":""}">
+      <div class="pthumb"><img src="${p[4]}" alt="${p[0]}" loading="lazy">${p[5]?'<span class="soldbadge">售完</span>':""}</div>
       <div class="pbody">
         <span class="ptag">${p[1]}</span>
         <div class="pname">${p[0]}</div>
         <div class="pprice"><b>${fmt(p[2])}</b><s>${fmt(p[3])}</s></div>
-        <a class="pbtn" href="${LINE_URL}" target="_blank" rel="noopener">私訊 LINE 下單</a>
+        ${p[5]?'<span class="pbtn pbtn-dis">已售完</span>':`<a class="pbtn" href="${LINE_URL}" target="_blank" rel="noopener">私訊 LINE 下單</a>`}
       </div>
     </div>`).join("");
 }
